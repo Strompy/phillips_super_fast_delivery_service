@@ -1,0 +1,43 @@
+,Address,City ,State,Zip,"Delivery
+Deadline","Mass
+KILO",Special Notes
+1,2630 W 38th Ave,Denver,CO,80211,10:30 AM,21,
+2,1965 W 38th Ave,Denver,CO,80211,EOD,44,
+3,5430 Zuni St,Denver,CO,80221,EOD,2,Can only be on truck 2
+4,3700 Federal Blvd,Denver,CO,80211,EOD,4,
+5,5100 Zuni St,Denver,CO,80221,EOD,5,
+6,3300 W 32nd Ave,Denver,CO,80211,10:30 AM,88,Delayed on flight---will not arrive to depot until 9:05 am
+7,4101 Inca St,Denver,CO,80211,EOD,8,
+8,5145 Zuni St,Denver,CO,80221,EOD,9,
+9,5145 Zuni St,Denver,CO,80221,EOD,2,Wrong address listed
+10,5000 Osage St #500,Denver,CO,80221,EOD,1,
+11,4500 W 17th Ave,Denver,CO,80204,EOD,1,
+12,2600 Sheridan Boulevard,Denver,CO,80214,EOD,1,
+13,5084 Tennyson St,Denver,CO,80212,10:30 AM,2,
+14,1601 Chestnut Pl,Denver,CO,80202,10:30 AM,88,"Must be delivered with 15, 19"
+15,1601 Chestnut Pl,Denver,CO,80202,9:00 AM,4,
+16,1601 Chestnut Pl,Denver,CO,80202,10:30 AM,88,"Must be delivered with 13, 19"
+17,3333 W 34th Ave,Denver,CO,80211,EOD,2,
+18,2056 Newton St,Denver,CO,80211,EOD,6,Can only be on truck 2
+19,2557 W Dunkeld Pl,Denver,CO,80211,EOD,37,
+20,2425 W Caithness Pl,Denver,CO,80211,10:30 AM,37,"Must be delivered with 13, 15"
+21,2425 W Caithness Pl,Denver,CO,80211,EOD,3,
+22,1265 Mariposa St,Denver,CO,80202,EOD,2,
+23,1700 N Sheridan Blvd,Denver,CO,80212,EOD,5,
+24,2000 Elitch Cir,Denver,CO,80204,EOD,7,
+25,890 Auraria Pkwy,Denver,CO,80204,10:30 AM,7,Delayed on flight---will not arrive to depot until 9:05 am
+26,890 Auraria Pkwy,Denver,CO,80204,EOD,25,
+27,2630 W 38th Ave,Denver,CO,80211,EOD,5,
+28,3300 W 32nd Ave,Denver,CO,80211,EOD,7,Delayed on flight---will not arrive to depot until 9:05 am
+29,4101 Inca St,Denver,CO,80211,10:30 AM,2,
+30,5145 Zuni St,Denver,CO,80221,10:30 AM,1,
+31,3300 W 32nd Ave,Denver,CO,80211,10:30 AM,1,
+32,3300 W 32nd Ave,Denver,CO,80211,EOD,1,Delayed on flight---will not arrive to depot until 9:05 am
+33,1965 W 38th Ave,Denver,CO,80211,EOD,1,
+34,1601 Chestnut Pl,Denver,CO,80202,10:30 AM,2,
+35,3301 W 46th Ave,Denver,CO,80211,EOD,88,
+36,4309 W 38th Ave,Denver,CO,80212,EOD,88,Can only be on truck 2
+37,5100 Zuni St,Denver,CO,80221,10:30 AM,2,
+38,5100 Zuni St,Denver,CO,80221,EOD,9,Can only be on truck 2
+39,5084 Tennyson St,Denver,CO,80212,EOD,9,
+40,3700 Federal Blvd,Denver,CO,80211,10:30 AM,45,

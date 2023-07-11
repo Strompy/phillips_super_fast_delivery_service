@@ -1,0 +1,108 @@
+DISTANCE BETWEEN HUBS IN MILES,,"HUB
+1644 Platte St, Denver, CO 80202","Rocky Mountain Lake Park
+3301 W 46th Ave, Denver, CO 80211","Inca Street
+4101 Inca St, Denver, CO 80211","Angies Secret Garden Personal chef Service - Denver
+2056 Newton St, Denver, CO 80211","Dunkeld Pl
+2557 W Dunkeld Pl, Denver, CO 80211","Leevers Locavore
+2630 W 38th Ave, Denver, CO 80211","Tennyson St
+5084 Tennyson St, Denver, CO 80212","Tacos Jalisco
+4309 W 38th Ave, Denver, CO 80212","Zuni St
+5430 Zuni St, Denver, CO 80221","Bank of the West
+1965 W 38th Ave, Denver, CO 80211","W 17th
+4500 W 17th Ave, Denver, CO 80204","Tacos Tequila Whiskey
+3300 W 32nd Ave, Denver, CO 80211","Zuni
+5145 Zuni St, Denver, CO 80221","Osceola
+3439 Osceola St, Denver, CO 80212","Osceola
+3439 Osceola St, Denver, CO 80212","Tacos Tequila Whiskey
+3300 W 32nd Ave, Denver, CO 80211","Public Storage
+2600 Sheridan Boulevard, Denver, CO 80214","W Caithness
+2425 W Caithness Pl, Denver, CO 80211","Federal Tire & Wheel
+3700 Federal Blvd, Denver, CO 80211","Zuni Park
+5100 Zuni St, Denver, CO 80221","Union Station
+1601 Chestnut Pl, Denver, CO 80202","Bar Bar
+2060 Champa St, Denver, CO 80205","Elitch Gardens
+2000 Elitch Cir, Denver, CO 80204","Sloans Lake
+1700 N Sheridan Blvd, Denver, CO 80212","Metro State University
+890 Auraria Pkwy, Denver, CO 80204","Controlled Products Systems Group
+5000 Osage St #500, Denver, CO 80221","La Alma-Lincoln Park
+1265 Mariposa St, Denver, CO 80204"
+"HUB
+1644 Platte St, Denver, CO 80202", HUB,0.0,,,,,,,,,,,,,,,,,,,,,,,,,,
+"Rocky Mountain Lake Park
+3301 W 46th Ave, Denver, CO 80211","3301 W 46th Ave
+(80211)",7.2,0.0,,,,,,,,,,,,,,,,,,,,,,,,,
+"Inca Street
+4101 Inca St, Denver, CO 80211","4101 Inca St
+(80211)",3.8,7.1,0.0,,,,,,,,,,,,,,,,,,,,,,,,
+"Angies Secret Garden Personal chef Service - Denver
+2056 Newton St, Denver, CO 80211","2056 Newton St
+(80211)",11.0,6.4,9.2,0.0,,,,,,,,,,,,,,,,,,,,,,,
+"Dunkeld Pl
+2557 W Dunkeld Pl, Denver, CO 80211","2557 W Dunkeld Pl
+(80211)",2.2,6.0,4.4,5.6,0.0,,,,,,,,,,,,,,,,,,,,,,
+"Leevers Locavore
+2630 W 38th Ave, Denver, CO 80211","2630 W 38th Ave
+(80211)",3.5,4.8,2.8,6.9,1.9,0.0,,,,,,,,,,,,,,,,,,,,,
+"Tennyson St
+5084 Tennyson St, Denver, CO 80212","5084 Tennyson St
+(80212)",10.9,1.6,8.6,8.6,7.9,6.3,0.0,,,,,,,,,,,,,,,,,,,,
+"Tacos Jalisco
+4309 W 38th Ave, Denver, CO 80212","4309 W 38th Ave
+(80212)",8.6,2.8,6.3,4.0,5.1,4.3,4.0,0.0,,,,,,,,,,,,,,,,,,,
+"Zuni St
+5430 Zuni St, Denver, CO 80221","5430 Zuni St
+(80221)",7.6,4.8,5.3,11.1,7.5,4.5,4.2,7.7,0.0,,,,,,,,,,,,,,,,,,
+"Bank of the West
+1965 W 38th Ave, Denver, CO 80211","1965 W 38th Ave
+(80211)",2.8,6.3,1.6,7.3,2.6,1.5,8.0,9.3,4.8,0.0,,,,,,,,,,,,,,,,,
+"W 17th
+4500 W 17th Ave, Denver, CO 80204","4500 W 17th Ave
+(80204)",6.4,7.3,10.4,1.0,6.5,8.7,8.6,4.6,11.9,9.4,0.0,,,,,,,,,,,,,,,,
+"Tacos Tequila Whiskey
+3300 W 32nd Ave, Denver, CO 80211","3300 W 32nd Ave
+(80211)",3.2,5.3,3.0,6.4,1.5,0.8,6.9,4.8,4.7,1.1,7.3,0.0,,,,,,,,,,,,,,,
+"Zuni
+5145 Zuni St, Denver, CO 80221","5145 Zuni St
+(80221)",7.6,4.8,5.3,11.1,7.5,4.5,4.2,7.7,0.6,5.1,12.0,4.7,0.0,,,,,,,,,,,,,,
+"Osceola
+3439 Osceola St, Denver, CO 80212","3439 Osceola St
+(80212)",5.2,3.0,6.5,3.9,3.2,3.9,4.2,1.6,7.6,4.6,4.9,3.5,7.3,0.0,,,,,,,,,,,,,
+"34th Ave
+3333 W 34th Ave, Denver, CO 80211","3333 W 34th Ave
+(80211)",4.4,4.6,5.6,4.3,2.4,3.0,8.0,3.3,7.8,3.7,5.2,2.6,7.8,1.3,0.0,,,,,,,,,,,,
+"Tacos Tequila Whiskey
+3300 W 32nd Ave, Denver, CO 80211","3300 W 32nd Ave
+(80211)",3.7,4.5,5.8,4.4,2.7,3.8,5.8,3.4,6.6,4.0,5.4,2.9,6.6,1.5,0.6,0.0,,,,,,,,,,,
+"Public Storage
+2600 Sheridan Boulevard, Denver, CO 80214","2600 Sheridan Boulevard
+(80214)",7.6,7.4,5.7,7.2,1.4,5.7,7.2,3.1,7.2,6.7,8.1,6.3,7.2,4.0,6.4,5.6,0.0,,,,,,,,,,
+"W Caithness
+2425 W Caithness Pl, Denver, CO 80211","2425 W Caithness Pl
+(80211)",2.0,6.0,4.1,5.3,0.5,1.9,7.7,5.1,5.9,2.3,6.2,1.2,5.9,3.2,2.4,1.6,7.1,0.0,,,,,,,,,
+"Federal Tire & Wheel
+3700 Federal Blvd, Denver, CO 80211","3700 Federal Blvd
+(80211)",3.6,5.0,3.6,6.0,1.7,1.1,6.6,4.6,5.4,1.8,6.9,1.0,5.4,3.0,2.2,1.7,6.1,1.6,0.0,,,,,,,,
+"Zuni Park
+5100 Zuni St, Denver, CO 80221","5100 Zuni St
+(80221)",6.5,4.8,4.3,10.6,6.5,3.5,3.2,6.7,1.0,4.1,11.5,3.7,1.0,6.9,6.8,6.4,7.2,4.9,4.4,0.0,,,,,,,
+"Union Station
+1601 Chestnut Pl, Denver, CO 80202","1601 Chestnut Pl
+(80202)",1.9,9.5,3.3,5.9,3.2,4.9,11.2,8.1,8.5,3.8,6.9,4.1,8.5,6.2,5.3,4.9,10.6,3.0,4.6,7.5,0.0,,,,,,
+"Bar Bar
+2060 Champa St, Denver, CO 80205","2060 Champa St
+(80205)",3.4,10.9,5.0,7.4,5.2,6.9,12.7,10.4,10.3,5.8,8.3,6.2,10.3,8.2,7.4,6.9,12.0,5.0,6.6,9.3,2.0,0.0,,,,,
+"Elitch Gardens
+2000 Elitch Cir, Denver, CO 80204","2000 Elitch Cir
+(80204)",2.4,8.3,6.1,4.7,2.5,4.2,10.0,7.8,7.8,4.3,4.1,3.4,7.8,5.5,4.6,4.2,9.4,2.3,3.9,6.8,2.9,4.4,0.0,,,,
+"Sloans Lake
+1700 N Sheridan Blvd, Denver, CO 80212","1700 N Sheridan Blvd
+(80212)",6.4,6.9,9.7,0.6,6.0,9.0,8.2,4.2,11.5,7.8,0.4,6.9,11.5,4.4,4.8,5.6,7.5,5.5,6.5,11.4,6.4,7.9,4.5,0.0,,,
+"Metro State University
+890 Auraria Pkwy, Denver, CO 80204","890 Auraria Pkwy
+(80204)",2.4,10.0,6.1,6.4,4.2,5.9,11.7,9.5,9.5,4.8,4.9,5.2,9.5,7.2,6.3,5.9,11.1,4.0,5.6,8.5,2.8,3.4,1.7,5.4,0.0,,
+"Controlled Products Systems Group
+5000 Osage St #500, Denver, CO 80221","5000 Osage St #500
+(80221)",5.0,4.4,2.8,10.1,5.4,3.5,5.1,6.2,2.8,3.2,11.0,3.7,2.8,6.4,6.5,5.7,6.2,5.1,4.3,1.8,6.0,7.9,6.8,10.6,7.0,0.0,
+"La Alma-Lincoln Park
+1265 Mariposa St, Denver, CO 80204","1265 Mariposa St
+(80202)",3.6,13.0,7.4,10.1,5.5,7.2,14.2,10.7,14.1,6.0,6.8,6.4,14.1,10.5,8.8,8.4,13.6,5.2,6.9,13.1,4.1,4.7,3.1,7.8,1.3,8.3,0.0
