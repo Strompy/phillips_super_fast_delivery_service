@@ -1,11 +1,6 @@
-import pytest
-
 from package import Package
-from package_importer import PackageImporter
 
-# @pytest.fixture
-# def test_importer():
-#     return PackageImporter('./docs/packages.csv')
+from package_importer import PackageImporter
 
 def test_init():
     test_importer = PackageImporter('../docs/packages.csv')
@@ -29,4 +24,3 @@ def test_create_packages():
     assert len(test_importer.packages) == 40
     for p in test_importer.packages:
         assert isinstance(p, Package)
-

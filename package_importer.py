@@ -2,7 +2,6 @@ import csv
 
 from package import Package
 
-
 class PackageImporter:
     def __init__(self, file_path):
         self.file_path = file_path
@@ -18,7 +17,7 @@ class PackageImporter:
     def create_packages(self):
         for p in self.package_dicts:
             p['address'] = self.build_address(p)
-            print(p)
+            # print(p)
             package = Package(p)
             self.packages.append(package)
 
@@ -29,5 +28,4 @@ class PackageImporter:
         zip = package_dict['zip']
         address = ', '.join([street, city, state])
         address = address + ' ' + zip
-        print(address)
         return address

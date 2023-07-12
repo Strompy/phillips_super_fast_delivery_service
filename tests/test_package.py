@@ -1,6 +1,5 @@
 from package import Package
 
-
 def test_package_init():
     test_package = Package({'id': '3',
                             'address': '5430 Zuni St, Denver, CO 80221',
