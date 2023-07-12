@@ -1,6 +1,4 @@
-,Address,City ,State,Zip,"Delivery
-Deadline","Mass
-KILO",Special Notes
+id,address,city,state,zip,deadline,mass,notes
 1,2630 W 38th Ave,Denver,CO,80211,10:30 AM,21,
 2,1965 W 38th Ave,Denver,CO,80211,EOD,44,
 3,5430 Zuni St,Denver,CO,80221,EOD,2,Can only be on truck 2
