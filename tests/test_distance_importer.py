@@ -22,8 +22,11 @@ def test_create_address_distances():
     test_importer.parse_file()
     test_importer.create_address_distances()
     assert len(test_importer.address_distances) == 27
-    for distances in test_importer.address_distances.values():
+    for address, distances in test_importer.address_distances.items():
         assert len(distances) == 27
         list(filter(('').__ne__, distances)) # removes any blank string entries from the original dataset
         length = len(list(filter(('').__ne__, distances)))
         assert length == 27
+        # the index of the address should return of distance of 0.0, the distance between its own address
+        address_index = test_importer.addresses.index(address)
+        assert distances[address_index] == '0.0'
