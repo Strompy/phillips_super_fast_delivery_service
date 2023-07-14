@@ -7,11 +7,6 @@ class TruckPathfinder:
         self.packages = packages
 
     def load_truck_1(self):
-        #          start at address[0] (hub)
-        #          find the shortest distance in address_distances[address[0]] that isn't '0.0
-        #          use the index of that distance to find the address in addresses
-        #          add that address to the route
-        #          repeat until 16 addresses are in the route
         route = [self.addresses[0]]
         distance_traveled = 0.0
         while len(route) < 17:
@@ -26,20 +21,13 @@ class TruckPathfinder:
                     if address not in route:
                         # iterate through packages and find the package with the matching address
                         for package in self.packages:
-                            if package.address == address:
-                                # if truck is full then break
-                                if len(route) >= 17:
-                                    break
-                                # if the package is on a truck, skip it
-                                if package.truck_number is not None:
-                                    continue
-                                # otherwise, add the package to the truck
-                                else:
-                                    package.truck_number = 1
-                                    route.append(address)
-                                    distance_traveled += distance
-                                    # break
-                                    break
+                            # if address matches and truck isn't full load package on the truck
+                            if len(route) >= 17: break
+                            if package.address == address and package.truck_number is None:
+                                package.truck_number = 1
+                                route.append(address)
+                                distance_traveled += distance
+                                break
 
 
 
