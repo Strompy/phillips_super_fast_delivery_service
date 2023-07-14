@@ -1,9 +1,10 @@
 class TruckPathfinder:
-    def __init__(self, addresses, address_distances):
+    def __init__(self, addresses, address_distances, packages):
         # self.truck = truck
         # self.warehouse = warehouse
         self.addresses = addresses
         self.address_distances = address_distances
+        self.packages = packages
 
     def find_path_from_hub(self):
         #          start at address[0] (hub)
@@ -23,9 +24,24 @@ class TruckPathfinder:
                     index = self.address_distances[current_address].index(distance)
                     address = self.addresses[index]
                     if address not in route:
-                        route.append(address)
-                        distance_traveled += distance
-                        break
+                        # iterate through packages and find the package with the matching address
+                        for package in self.packages:
+                            if package.address == address:
+                                # if truck is full then break
+                                if len(route) >= 17:
+                                    break
+                                # if the package is on a truck, skip it
+                                if package.truck_number is not None:
+                                    continue
+                                # otherwise, add the package to the truck
+                                else:
+                                    package.truck_number = 1
+                                    route.append(address)
+                                    distance_traveled += distance
+                                    # break
+                                    break
+
+
 
         return route
 
