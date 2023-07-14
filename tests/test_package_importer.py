@@ -9,7 +9,7 @@ def test_init():
 
 def test_read_file():
     test_importer = PackageImporter('../docs/packages.csv')
-    test_importer.read_file()
+    test_importer.parse_file()
     assert len(test_importer.package_dicts) == 40
 
 def test_build_address():
@@ -19,7 +19,7 @@ def test_build_address():
 
 def test_create_packages():
     test_importer = PackageImporter('../docs/packages.csv')
-    test_importer.read_file()
+    test_importer.parse_file()
     test_importer.create_packages()
     assert len(test_importer.packages) == 40
     for p in test_importer.packages:
