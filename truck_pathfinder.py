@@ -6,7 +6,7 @@ class TruckPathfinder:
         self.address_distances = address_distances
         self.packages = packages
 
-    def find_path_from_hub(self):
+    def load_truck_1(self):
         #          start at address[0] (hub)
         #          find the shortest distance in address_distances[address[0]] that isn't '0.0
         #          use the index of that distance to find the address in addresses
