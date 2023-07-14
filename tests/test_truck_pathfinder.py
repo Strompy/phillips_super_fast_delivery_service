@@ -14,6 +14,8 @@ def test_load_truck_1():
     assert len(route) == 17
     assert route[0] == hub()
     assert len(route) == len(set(route))
+    truck_1_packages = list(filter(lambda p: p.truck_number == 1, packages))
+    assert len(truck_1_packages) == 16
 
 
 
