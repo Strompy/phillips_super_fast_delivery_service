@@ -7,7 +7,6 @@ class TruckLoader:
 
     def load_truck(self):
         self.truck.add_address_to_route(self.hub())
-        # truck_packages = []
         while len(self.truck.packages) < 16:
             current_address = self.truck.route[-1]
             current_address_distances = self.address_distances[current_address].copy()
@@ -25,6 +24,7 @@ class TruckLoader:
                         self.truck.increment_distance(distance)
                         if len(self.truck.packages) >= 16: break
                 if len(self.truck.packages) > package_count: break
+            if len(list(filter(lambda p: p.truck_number is None, self.packages))) == 0: break
         return self.truck
 
     def load_truck_1(self):

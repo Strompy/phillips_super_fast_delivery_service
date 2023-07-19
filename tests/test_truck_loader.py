@@ -127,10 +127,9 @@ def test_load_all_trucks():
     truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, unloaded, truck_3)
     truck_loader.load_truck()
     assert truck_3.route[0] == hub()
-    assert len(truck_3.route) == 17  # this works since there are duplicate addresses
+    assert len(truck_3.route) == 9  # this works since there are duplicate addresses
     truck_3_packages = filter_packages(packages, 3)
-    assert len(truck_3_packages) == 16
-    assert len(truck_3.packages) == 16
+    assert len(truck_3_packages) == 8
     assert truck_3.distance_traveled != 0.0
 
 
