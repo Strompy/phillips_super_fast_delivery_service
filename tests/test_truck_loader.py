@@ -106,38 +106,38 @@ def test_load_all_trucks():
     truck_loader.load_truck()
     assert truck_1.route[0] == hub()
     assert len(truck_1.route) == 17  # this works since there are duplicate addresses
-    truck_1_packages = list(filter(lambda p: p.truck_number == 1, packages))
+    truck_1_packages = filter_packages(packages, 1)
     assert len(truck_1_packages) == 16
     assert len(truck_1.packages) == 16
     assert truck_1.distance_traveled != 0.0
-
+    # load truck 2
     truck_2 = Truck(2)
-    truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, unloaded_packages,
-                               truck_2)
+    unloaded = filter_packages(packages)
+    truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, unloaded, truck_2)
     truck_loader.load_truck()
     assert truck_2.route[0] == hub()
     assert len(truck_2.route) == 17  # this works since there are duplicate addresses
-    truck_2_packages = list(filter(lambda p: p.truck_number == 2, packages))
+    truck_2_packages = filter_packages(packages, 2)
     assert len(truck_2_packages) == 16
     assert len(truck_2.packages) == 16
     assert truck_2.distance_traveled != 0.0
-
+    # load truck 3
     truck_3 = Truck(3)
-    # unloaded_packages = unloaded_packages()
-    truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, unloaded_packages,
-                               truck_3)
+    unloaded = filter_packages(packages)
+    truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, unloaded, truck_3)
     truck_loader.load_truck()
     assert truck_3.route[0] == hub()
     assert len(truck_3.route) == 17  # this works since there are duplicate addresses
-    truck_3_packages = list(filter(lambda p: p.truck_number == 3, packages))
+    truck_3_packages = filter_packages(packages, 3)
     assert len(truck_3_packages) == 16
     assert len(truck_3.packages) == 16
     assert truck_3.distance_traveled != 0.0
 
 
-def unloaded_packages():
-    return list(filter(lambda p: p.truck_number == None, packages))
-
-
 def hub():
     return '1644 Platte St, Denver, CO 80202'
+
+
+def filter_packages(packages, number=None):
+    return list(filter(lambda p: p.truck_number == number, packages))
+
