@@ -20,7 +20,7 @@ id,address,city,state,zip,deadline,mass,notes
 19,2557 W Dunkeld Pl,Denver,CO,80211,EOD,37,
 20,2425 W Caithness Pl,Denver,CO,80211,10:30 AM,37,"Must be delivered with 13, 15"
 21,2425 W Caithness Pl,Denver,CO,80211,EOD,3,
-22,1265 Mariposa St,Denver,CO,80202,EOD,2,
+22,1265 Mariposa St,Denver,CO,80204,EOD,2,
 23,1700 N Sheridan Blvd,Denver,CO,80212,EOD,5,
 24,2000 Elitch Cir,Denver,CO,80204,EOD,7,
 25,890 Auraria Pkwy,Denver,CO,80204,10:30 AM,7,Delayed on flight---will not arrive to depot until 9:05 am
