@@ -30,6 +30,7 @@ class TruckLoader:
     def package_is_valid(self, package, address):
         if package.truck_number is not None: return False
         if package.address != address: return False
+        if package.notes == 'Can only be on truck 2' and self.truck.number != 2: return False
         return True
 
     # to prioritize packages with deadlines, maybe go through the list of packages and add them to the truck first
