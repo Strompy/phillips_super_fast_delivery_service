@@ -17,15 +17,33 @@ class TruckLoader:
                 if distance == 0.0: continue
                 address = self.addresses[index]
                 for package in self.packages:
-                    if package.address == address and package.truck_number is None:
+                    if self.package_is_valid(package, address):
                         package.truck_number = self.truck.number
                         self.truck.load_package(package)
                         self.truck.add_address_to_route(package.address)
                         self.truck.increment_distance(distance)
                         if len(self.truck.packages) >= 16: break
                 if len(self.truck.packages) > package_count: break
-            if len(list(filter(lambda p: p.truck_number is None, self.packages))) == 0: break
+            if self.all_packages_loaded(): break
         return self.truck
+
+    def package_is_valid(self, package, address):
+        if package.truck_number is not None: return False
+        if package.address != address: return False
+        return True
+
+    # to prioritize packages with deadlines, maybe go through the list of packages and add them to the truck first
+    # there is one 9:00AM package and then several 10:30AM packages
+    # trucks travel at 18 miles per hour
+
+    def all_packages_loaded(self):
+        return len(list(filter(lambda p: p.truck_number is None, self.packages))) == 0
+
+    def hub(self):
+        return self.addresses[0]
+
+
+    # Old route first attempts
 
     def load_truck_1(self):
         route = [self.hub()]
@@ -99,8 +117,3 @@ class TruckLoader:
                 if len(truck_3_packages) > package_count: break
             if len(list(filter(lambda p: p.truck_number == None, self.packages))) == 0: break
         return route
-
-    # def find_closest_package(self, address):
-
-    def hub(self):
-        return self.addresses[0]
