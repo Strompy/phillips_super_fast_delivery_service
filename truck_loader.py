@@ -1,9 +1,16 @@
+import datetime
+from datetime import time
+
+
 class TruckLoader:
     def __init__(self, addresses, address_distances, packages, truck = None):
         self.truck = truck
         self.addresses = addresses
         self.address_distances = address_distances
         self.packages = packages
+        # current_time attribute that starts at 8:00AM
+        self.current_time = time(8, 0)
+
 
     def load_truck(self):
         self.truck.add_address_to_route(self.hub())
