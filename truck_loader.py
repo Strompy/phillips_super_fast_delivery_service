@@ -44,21 +44,17 @@ class TruckLoader:
         return True
 
     def calculate_time_elapsed(self, distance):
-        # Calculate time in hours
         time_hours = distance / self.truck_avg_mph()
-        # Convert time to minutes
-        time_minutes = time_hours * 60 * 60
-        return time_minutes
+        time_seconds = time_hours * 60 * 60
+        return time_seconds
 
-    def truck_avg_mph(self):
+    @staticmethod
+    def truck_avg_mph():
         return 18.0
 
     def increment_current_time(self, seconds):
-        # Create a timedelta object representing the time elapsed
         time_elapsed_timedelta = timedelta(seconds=seconds)
         self.current_datetime = self.current_datetime + time_elapsed_timedelta
-
-        # Add the time elapsed to the start time
 
     # to prioritize packages with deadlines, maybe go through the list of packages and add them to the truck first
     # there is one 9:00AM package and then several 10:30AM packages
