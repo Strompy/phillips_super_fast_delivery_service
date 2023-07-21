@@ -12,5 +12,5 @@ class Package:
         self.delivery_time = None
 
     def delivered_at_time(self):
-        if self.delivery_time is not None:
+        if isinstance(self.delivery_time, datetime):
             return self.delivery_time.strftime('%H:%M:%S')
