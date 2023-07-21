@@ -1,5 +1,9 @@
 from distance_importer import DistanceImporter
 
+def test_everything():
+    test_distance_importer_init()
+    test_parse_file()
+    test_create_address_distances()
 
 def test_distance_importer_init():
     test_importer = DistanceImporter('../docs/distances.csv')
@@ -29,4 +33,4 @@ def test_create_address_distances():
         assert length == 27
         # the index of the address should return of distance of 0.0, the distance between its own address
         address_index = test_importer.addresses.index(address)
-        assert distances[address_index] == '0.0'
+        assert distances[address_index] == 0.0

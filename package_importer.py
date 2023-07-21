@@ -8,7 +8,7 @@ class PackageImporter:
         self.package_dicts = []
         self.packages = []
 
-    def read_file(self):
+    def parse_file(self):
         reader = csv.DictReader(open(self.file_path))
         for row in reader:
             # print(row)
@@ -20,6 +20,7 @@ class PackageImporter:
             # print(p)
             package = Package(p)
             self.packages.append(package)
+        return self.packages
 
     def build_address(self, package_dict):
         street = package_dict['address']

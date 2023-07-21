@@ -13,16 +13,16 @@ class DistanceImporter:
         next(reader)
         for row in reader:
             _, address = row[0].splitlines()
-            distances = row
-            del distances[0:2]
+            del row[0:2]
             self.addresses.append(address)
             self.distance_lists.append(row)
+
 
     def create_address_distances(self):
         for index, address in enumerate(self.addresses):
             distances = []
             for x in range(0, index):
-                distances.append(self.distance_lists[index][x])
+                distances.append(float(self.distance_lists[index][x]))
             for x in range(index, 27):
-                distances.append(self.distance_lists[x][index])
+                distances.append(float(self.distance_lists[x][index]))
             self.address_distances[address] = distances
