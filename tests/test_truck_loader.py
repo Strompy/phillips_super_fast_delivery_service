@@ -51,7 +51,8 @@ def test_load_all_trucks():
     truck_1_packages = filter_packages(packages, 1)
     assert len(truck_1_packages) == 16
     assert len(truck_1.packages) == 16
-    assert truck_1.distance_traveled != 0.0
+    assert truck_1.distance_traveled > 0.0
+    assert truck_loader.current_time() == '11:50:40'
     # load truck 2
     truck_2 = Truck(2)
     unloaded = filter_packages(packages)
@@ -62,7 +63,7 @@ def test_load_all_trucks():
     truck_2_packages = filter_packages(packages, 2)
     assert len(truck_2_packages) == 16
     assert len(truck_2.packages) == 16
-    assert truck_2.distance_traveled != 0.0
+    assert truck_2.distance_traveled > 0.0
     # load truck 3
     truck_3 = Truck(3)
     unloaded = filter_packages(packages)
@@ -72,8 +73,10 @@ def test_load_all_trucks():
     assert len(truck_3.route) == 9  # this works since there are duplicate addresses
     truck_3_packages = filter_packages(packages, 3)
     assert len(truck_3_packages) == 8
-    assert truck_3.distance_traveled != 0.0
-
+    assert truck_3.distance_traveled > 0.0
+    assert truck_1.distance_traveled + truck_2.distance_traveled + truck_3.distance_traveled < 140.0
+    for package in packages:
+        assert package.delivered_at_time() is not None
 
 def hub():
     return '1644 Platte St, Denver, CO 80202'

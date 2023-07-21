@@ -1,3 +1,6 @@
+from datetime import datetime
+
+
 class Package:
     def __init__(self, package_dict):
         self.id = int(package_dict['id'])
@@ -7,3 +10,7 @@ class Package:
         self.notes = package_dict['notes']
         self.truck_number = None
         self.delivery_time = None
+
+    def delivered_at_time(self):
+        if self.delivery_time is not None:
+            return self.delivery_time.strftime('%H:%M:%S')
