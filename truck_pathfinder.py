@@ -1,7 +1,5 @@
 class TruckPathfinder:
     def __init__(self, addresses, address_distances, packages):
-        # self.truck = truck
-        # self.warehouse = warehouse
         self.addresses = addresses
         self.address_distances = address_distances
         self.packages = packages
@@ -56,9 +54,3 @@ class TruckPathfinder:
         #       this is stuck in a loop if no packages match the address
 
 
-    # def load_truck_by_package(self):
-        # grab the package that is the closest address to the hub,
-        # then find the package with an address closest to that first package's address
-        # make sure the package is not already on a truck
-        # if it is, find the next closest package
-        # repeat until truck is full
