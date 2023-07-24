@@ -38,10 +38,15 @@ class TruckLoader:
         return self.truck
 
     def load_truck(self):
-        self.truck.add_address_to_route(self.hub())
-        invalid_distances = [0.0]
+        if len(self.truck.route) == 0:
+            self.truck.add_address_to_route(self.hub())
+        # invalid_distances = [0.0]
+        current_address = ''
 
         while len(self.truck.packages) < 16:
+            # if the current_address changes then invalid_distances should be reset
+            if current_address != self.truck.route[-1]:
+                invalid_distances = [0.0]
             current_address = self.truck.route[-1]
             current_address_distances = self.address_distances[current_address].copy()
             package_count = len(self.truck.packages)
@@ -50,9 +55,6 @@ class TruckLoader:
             for index in smallest_distance_indices:
                 distance = current_address_distances[index]
                 address = self.addresses[index]
-                # if address == '2056 Newton St, Denver, CO 80211':
-                #     number = self.truck.number
-                #     print('here')
                 if address == self.hub(): continue
                 packages_at_address = [package for package in self.packages if package.address == address]
                 room_on_truck = len(self.truck.packages) + len(packages_at_address) <= 16
@@ -71,28 +73,10 @@ class TruckLoader:
                         if len(self.truck.packages) >= 16:
                             break
 
-                # for package in self.packages:
-                #     if self.package_is_valid(package, address):
-                #         package.truck_number = self.truck.number
-                #         self.truck.load_package(package)
-                #         if self.truck.route[-1] != address:
-                #             self.truck.increment_distance(distance)
-                #             seconds_to_destination = self.calculate_time_elapsed(distance)
-                #             self.increment_current_time(seconds_to_destination)
-                #
-                #         # at the moment I am adding duplicate addresses to the route
-                #         self.truck.add_address_to_route(package.address)
-                #         package.delivery_time = self.current_datetime
-                #         if len(self.truck.packages) >= 16: break
-                #
-                #     # if I added packages I have completed a stop and need to start again from the new current address
-                #     if len(self.truck.packages) > package_count:
-                #         invalid_distances = [0.0]
-                #         break
-
             # if no packages were added to the truck for any indices
             # then I need to add the distance to the invalid distances
-            if len(self.truck.packages) == package_count: invalid_distances.append(distance)
+            if len(self.truck.packages) == package_count:
+                invalid_distances.append(distance)
 
             if self.all_packages_loaded(): break
         return self.truck
@@ -149,3 +133,26 @@ class TruckLoader:
 
     def hub(self):
         return self.addresses[0]
+
+    def load_truck_2(self):
+        self.truck.add_address_to_route(self.hub())
+        current_address = self.truck.route[-1]
+        current_address_distances = self.address_distances[current_address].copy()
+
+        # for index in smallest_distance_indices:
+        index = self.addresses.index('2056 Newton St, Denver, CO 80211')
+        distance = current_address_distances[index]
+        address = self.addresses[index]
+        packages_at_address = [package for package in self.packages if package.address == address]
+        for package in packages_at_address:
+            if self.package_is_valid(package, address):
+                package.truck_number = self.truck.number
+                self.truck.load_package(package)
+                if self.truck.route[-1] != address:
+                    self.truck.increment_distance(distance)
+                    seconds_to_destination = self.calculate_time_elapsed(distance)
+                    self.increment_current_time(seconds_to_destination)
+                self.truck.add_address_to_route(package.address)
+                package.delivery_time = self.current_datetime
+
+        self.load_truck()

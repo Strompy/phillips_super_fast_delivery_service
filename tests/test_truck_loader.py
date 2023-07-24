@@ -51,7 +51,7 @@ def test_load_all_trucks():
     truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, packages, truck_1)
     truck_loader.load_truck()
     assert truck_1.route[0] == hub()
-    assert len(truck_1.route) == 17  # this works since there are duplicate addresses
+    assert len(truck_1.route) == 17  # since there are duplicate addresses
     truck_1_packages = filter_packages(packages, 1)
     assert len(truck_1_packages) == 16
     assert len(truck_1.packages) == 16
@@ -61,9 +61,12 @@ def test_load_all_trucks():
     truck_2 = Truck(2)
     unloaded = filter_packages(packages)
     truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, unloaded, truck_2)
-    truck_loader.load_truck()
+    truck_loader.load_truck_2()
     assert truck_2.route[0] == hub()
-    assert len(truck_2.route) == 17  # this works since there are duplicate addresses
+    assert len(truck_2.route) == 17  # since there are duplicate addresses
+    required_truck_2_packages = [package for package in packages if package.notes == 'Can only be on truck 2']
+    for package in required_truck_2_packages:
+        assert package.truck_number == 2
     truck_2_packages = filter_packages(packages, 2)
     assert len(truck_2_packages) == 16
     assert len(truck_2.packages) == 16
@@ -71,10 +74,10 @@ def test_load_all_trucks():
     # load truck 3
     truck_3 = Truck(3)
     unloaded = filter_packages(packages)
-    truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, unloaded, truck_3)
+    truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, unloaded, truck_3, 9, 5, 0)
     truck_loader.load_truck()
     assert truck_3.route[0] == hub()
-    assert len(truck_3.route) == 9  # this works since there are duplicate addresses
+    assert len(truck_3.route) == 9  # since there are duplicate addresses
     truck_3_packages = filter_packages(packages, 3)
     assert len(truck_3_packages) == 8
     assert truck_3.distance_traveled > 0.0
