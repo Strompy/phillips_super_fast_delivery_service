@@ -7,8 +7,7 @@ class TruckLoader:
         self.addresses = addresses
         self.address_distances = address_distances
         self.packages = packages
-        self.current_datetime = datetime.combine(datetime.today(),
-                                                 time(8, 0))  # datetime(2023, 7, 21, hour, minute, second)
+        self.current_datetime = datetime.combine(datetime.today(), time(hour, minute, second))
 
     def current_time(self):
         return self.current_datetime.strftime('%H:%M:%S')
@@ -51,8 +50,15 @@ class TruckLoader:
             for index in smallest_distance_indices:
                 distance = current_address_distances[index]
                 address = self.addresses[index]
+                # if address == '2056 Newton St, Denver, CO 80211':
+                #     number = self.truck.number
+                #     print('here')
                 if address == self.hub(): continue
-                for package in self.packages:
+                packages_at_address = [package for package in self.packages if package.address == address]
+                room_on_truck = len(self.truck.packages) + len(packages_at_address) <= 16
+                if not room_on_truck:
+                    continue
+                for package in packages_at_address:
                     if self.package_is_valid(package, address):
                         package.truck_number = self.truck.number
                         self.truck.load_package(package)
@@ -60,16 +66,29 @@ class TruckLoader:
                             self.truck.increment_distance(distance)
                             seconds_to_destination = self.calculate_time_elapsed(distance)
                             self.increment_current_time(seconds_to_destination)
-
-                        # at the moment I am adding duplicate addresses to the route
-                        self.truck.add_address_to_route(package.address)
+                        self.truck.add_address_to_route(package.address) # at the moment I am adding duplicate addresses to the route
                         package.delivery_time = self.current_datetime
-                        if len(self.truck.packages) >= 16: break
+                        if len(self.truck.packages) >= 16:
+                            break
 
-                    # if I added packages I have completed a stop and need to start again from the new current address
-                    if len(self.truck.packages) > package_count:
-                        invalid_distances = [0.0]
-                        break
+                # for package in self.packages:
+                #     if self.package_is_valid(package, address):
+                #         package.truck_number = self.truck.number
+                #         self.truck.load_package(package)
+                #         if self.truck.route[-1] != address:
+                #             self.truck.increment_distance(distance)
+                #             seconds_to_destination = self.calculate_time_elapsed(distance)
+                #             self.increment_current_time(seconds_to_destination)
+                #
+                #         # at the moment I am adding duplicate addresses to the route
+                #         self.truck.add_address_to_route(package.address)
+                #         package.delivery_time = self.current_datetime
+                #         if len(self.truck.packages) >= 16: break
+                #
+                #     # if I added packages I have completed a stop and need to start again from the new current address
+                #     if len(self.truck.packages) > package_count:
+                #         invalid_distances = [0.0]
+                #         break
 
             # if no packages were added to the truck for any indices
             # then I need to add the distance to the invalid distances
@@ -79,13 +98,14 @@ class TruckLoader:
         return self.truck
 
     def get_indices_of_smallest_valid_distance(self, current_address_distances, invalid_distances):
-        # Filter out elements that are not in custom_list
+        # Filter out elements that are not in invalid_distances
         valid_distances = [distance for distance in current_address_distances if distance not in invalid_distances]
 
         if not valid_distances:
             "The list does not contain any valid distances elements."
             # this is hitting when I have one package remaining, '2056 Newton St, Denver, CO 80211'
             # Unless I load truck 2 first, I need to prioritize loading of Truck 2 based on the package notes
+            # so that truck 2 packages are on truck 2
             raise ValueError
 
         # Find the minimum distance among non-zero elements
@@ -104,6 +124,7 @@ class TruckLoader:
         if package.truck_number is not None: return False
         if package.address != address: return False
         if package.notes == 'Can only be on truck 2' and self.truck.number != 2: return False
+        if package.notes == 'Delayed on flight---will not arrive to depot until 9:05 am' and self.truck.number != 3: return False
         return True
 
     def calculate_time_elapsed(self, distance):
