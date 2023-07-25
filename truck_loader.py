@@ -88,6 +88,17 @@ class TruckLoader:
     def hub(self):
         return self.addresses[0]
 
+    def load_truck_1(self):
+        self.load_truck()
+        # truck_1 returns to hub after loading to get driver onto truck 3
+        distance = self.address_distances[self.last_route_address()][0]
+        self.truck.add_address_to_route(self.hub())
+        self.truck.increment_distance(distance)
+        seconds_to_destination = self.calculate_time_elapsed(distance)
+        self.increment_current_time(seconds_to_destination)
+        return self.truck
+
+
     def load_truck_2(self):
         self.truck.add_address_to_route(self.hub())
         current_address = self.last_route_address()

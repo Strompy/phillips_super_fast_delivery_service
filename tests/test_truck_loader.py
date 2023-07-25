@@ -49,14 +49,16 @@ def test_load_all_trucks():
     distance_importer.create_address_distances()
     truck_1 = Truck(1)
     truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, packages, truck_1)
-    truck_loader.load_truck()
+    truck_loader.load_truck_1()
     assert truck_1.route[0] == hub()
-    assert len(truck_1.route) == 17
+    assert truck_1.route[-1] == hub()
+    assert len(truck_1.route) == 18 # 16 packages + start and end hub
     truck_1_packages = filter_packages(packages, 1)
     assert len(truck_1_packages) == 16
     assert len(truck_1.packages) == 16
     assert truck_1.distance_traveled > 0.0
     assert truck_loader.current_time() != '08:00:00'
+
     # load truck 2
     truck_2 = Truck(2)
     unloaded = filter_packages(packages)
@@ -72,6 +74,7 @@ def test_load_all_trucks():
     assert len(truck_2.packages) == 16
     assert truck_2.distance_traveled > 0.0
     # load truck 3
+    # truck 3 needs to start when truck 1 returns to hub
     truck_3 = Truck(3)
     unloaded = filter_packages(packages)
     truck_loader = TruckLoader(distance_importer.addresses, distance_importer.address_distances, unloaded, truck_3, 9, 5, 0)
