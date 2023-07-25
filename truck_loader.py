@@ -20,7 +20,7 @@ class TruckLoader:
         if len(self.truck.route) == 0:
             self.truck.add_address_to_route(self.hub())
         current_address = ''
-        while len(self.truck.packages) < 16:
+        while self.room_on_truck() and not self.all_packages_loaded():
             if current_address != self.last_route_address():
                 invalid_distances = [0.0]
             current_address = self.last_route_address()
@@ -31,19 +31,17 @@ class TruckLoader:
             for index in smallest_distance_indices:
                 distance = current_address_distances[index]
                 address = self.addresses[index]
-                packages_at_address = [package for package in self.packages if package.address == address]
+                packages_at_address = [package for package in self.packages if package.address == address and package.notes != 'Wrong address listed']
                 if not self.room_on_truck(packages_at_address): continue
                 self.validate_and_load_packages(packages_at_address, address, distance)
             # if no packages were added to the truck then distance in invalid
             if len(self.truck.packages) == package_count:
                 invalid_distances.append(distance)
-            if self.all_packages_loaded(): break
         return self.truck
 
     def get_indices_of_smallest_valid_distance(self, current_address_distances, invalid_distances):
         valid_distances = [distance for distance in current_address_distances if distance not in invalid_distances]
         if not valid_distances:
-            # raise ValueError("The list does not contain any valid distances elements.")
             return None
         min_distance = min(valid_distances)
         min_indices = [index for index, distance in enumerate(current_address_distances) if distance == min_distance]
@@ -51,9 +49,9 @@ class TruckLoader:
         return min_indices
 
     def room_on_truck(self, packages_at_address=[]):
-        # if self.truck.number == 2:
-        #     return len(self.truck.packages) + len(packages_at_address) <= 15
-        # else:
+        if self.truck.number == 2:
+            return len(self.truck.packages) + len(packages_at_address) <= 15
+        else:
             return len(self.truck.packages) + len(packages_at_address) <= 16
 
     def package_is_valid(self, package, address):
@@ -61,11 +59,10 @@ class TruckLoader:
         if package.address != address: return False
         if package.notes == 'Can only be on truck 2' and self.truck.number != 2: return False
         if package.notes == 'Delayed on flight---will not arrive to depot until 9:05 am' and self.truck.number != 3: return False
-        # if package.notes == 'Wrong address listed' and not self.updated_address_available(): return False
         return True
 
-    # def updated_address_available(self):
-        # return self.current_datetime >= datetime.combine(datetime.today(), time(10, 20))
+    def updated_address_available(self):
+        return self.current_datetime >= datetime.combine(datetime.today(), time(10, 20))
 
     def validate_and_load_packages(self, packages_at_address, address, distance):
         # check all packages_at_address are valid
@@ -80,9 +77,7 @@ class TruckLoader:
         return True
 
     def load_packages(self, packages_at_address, address, distance):
-        # then load all packages_at_address if valid
         for package in packages_at_address:
-            # if self.package_is_valid(package, address):
             package.truck_number = self.truck.number
             self.truck.load_package(package)
             if self.last_route_address() != address:
@@ -91,13 +86,13 @@ class TruckLoader:
                 self.increment_current_time(seconds_to_destination)
             self.truck.add_address_to_route(package.address)
             package.delivery_time = self.current_datetime
-                # if self.address_needs_updating and self.updated_address_available(): self.update_wrong_address()
 
-    # def update_wrong_address(self):
-    #     package = next(package for package in self.packages if package.notes == 'Wrong address listed')
-    #     self.address_needs_updating = False
-    #     package.update_address('5100 Zuni St, Denver, CO 80221')
-    #     return package
+    def update_wrong_address(self):
+        package = next(package for package in self.packages if package.notes == 'Wrong address listed')
+        self.address_needs_updating = False
+        package.update_address('5100 Zuni St, Denver, CO 80221')
+        package.update_notes('Corrected address')
+        return package
 
     def calculate_time_elapsed(self, distance):
         time_hours = distance / self.truck_avg_mph()
@@ -132,21 +127,6 @@ class TruckLoader:
         return self.truck
 
 
-    def load_truck_3(self):
-        self.truck.add_address_to_route(self.hub())
-        current_address = self.last_route_address()
-        current_address_distances = self.address_distances[current_address].copy()
-        farthest_required_address = '4101 Inca St, Denver, CO 80211'
-        index = self.addresses.index(farthest_required_address)
-        distance = current_address_distances[index]
-        address = self.addresses[index]
-        packages_at_address = [package for package in self.packages if package.address == address]
-        self.validate_and_load_packages(packages_at_address, address, distance)
-
-        self.load_truck()
-        return self.truck
-
-
     def load_truck_2(self):
         self.truck.add_address_to_route(self.hub())
         current_address = self.last_route_address()
@@ -160,17 +140,16 @@ class TruckLoader:
 
         self.load_truck()
 
-        # self.truck.packages
-        # self.wait_until_updated_address_time()
-        # package = self.update_wrong_address()
-        # current_address = self.last_route_address()
-        # current_address_distances = self.address_distances[current_address].copy()
-        # index = self.addresses.index(package.address)
-        # distance = current_address_distances[index]
-        # address = self.addresses[index]
-        # self.validate_and_load_packages([package], address, distance)
+        self.truck.packages
+        self.wait_until_updated_address_time()
+        package = self.update_wrong_address()
+        current_address = self.last_route_address()
+        current_address_distances = self.address_distances[current_address].copy()
+        index = self.addresses.index(package.address)
+        distance = current_address_distances[index]
+        address = self.addresses[index]
+        self.validate_and_load_packages([package], address, distance)
 
     def wait_until_updated_address_time(self):
-        # if time is earlier than 10:20am, set time to 10:20am
         if self.current_datetime.time() < time(10, 20):
             self.current_datetime = datetime.combine(datetime.today(), time(10, 20))

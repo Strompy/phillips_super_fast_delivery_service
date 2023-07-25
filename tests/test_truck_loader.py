@@ -98,8 +98,10 @@ def test_load_all_trucks():
     for package in ten_thirty_am_packages:
         assert package.delivery_time <= datetime.combine(datetime.today(), time(10, 30))
 
-    # wrong_address = list(filter(lambda p: p.notes == 'Wrong address listed', packages))
-    # assert wrong_address[0].delivery_time >= datetime.combine(datetime.today(), time(10, 20))
+    wrong_address = list(filter(lambda p: p.notes == 'Wrong address listed', packages))
+    assert len(wrong_address) == 0
+    updated = [package for package in packages if package.notes == 'Corrected address']
+    assert updated[0].delivery_time >= datetime.combine(datetime.today(), time(10, 20))
 
 def test_load_truck_with_deadlines():
     package_importer = PackageImporter('../docs/packages.csv')
@@ -126,8 +128,6 @@ def test_load_truck_with_deadlines():
     for package in ten_thirty_am_packages:
         assert package.delivery_time <= datetime.combine(datetime.today(), time(10, 30))
 
-    # wrong_address = list(filter(lambda p: p.notes == 'Wrong address listed', packages))
-    # assert wrong_address[0].delivery_time >= datetime.combine(datetime.today(), time(10, 20))
 def hub():
     return '1644 Platte St, Denver, CO 80202'
 
