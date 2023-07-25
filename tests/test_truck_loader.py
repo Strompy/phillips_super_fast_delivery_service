@@ -90,6 +90,16 @@ def test_load_all_trucks():
     assert total_distance < 140.0
     for package in packages:
         assert package.delivered_at_time() is not None
+    nine_am_packages = list(filter(lambda p: p.deadline == '9:00 AM', packages))
+    ten_thirty_am_packages = list(filter(lambda p: p.deadline == '10:30 AM', packages))
+    for package in nine_am_packages:
+        assert package.delivery_time <= datetime.combine(datetime.today(), time(9, 0))
+
+    for package in ten_thirty_am_packages:
+        assert package.delivery_time <= datetime.combine(datetime.today(), time(10, 30))
+
+    # wrong_address = list(filter(lambda p: p.notes == 'Wrong address listed', packages))
+    # assert wrong_address[0].delivery_time >= datetime.combine(datetime.today(), time(10, 20))
 
 def test_load_truck_with_deadlines():
     package_importer = PackageImporter('../docs/packages.csv')
@@ -100,7 +110,7 @@ def test_load_truck_with_deadlines():
     distance_importer.create_address_distances()
     truck_1 = Truck(1)
     truck_loader_1 = TruckLoader(distance_importer.addresses, distance_importer.address_distances, packages, truck_1)
-    truck_loader_1.load_truck()
+    truck_loader_1.load_truck_1()
     truck_2 = Truck(2)
     truck_loader_2 = TruckLoader(distance_importer.addresses, distance_importer.address_distances, packages, truck_2)
     truck_loader_2.load_truck_2()
@@ -116,7 +126,8 @@ def test_load_truck_with_deadlines():
     for package in ten_thirty_am_packages:
         assert package.delivery_time <= datetime.combine(datetime.today(), time(10, 30))
 
-
+    # wrong_address = list(filter(lambda p: p.notes == 'Wrong address listed', packages))
+    # assert wrong_address[0].delivery_time >= datetime.combine(datetime.today(), time(10, 20))
 def hub():
     return '1644 Platte St, Denver, CO 80202'
 
