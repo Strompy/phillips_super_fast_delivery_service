@@ -2,12 +2,15 @@ from datetime import datetime, timedelta, time
 
 
 class TruckLoader:
-    def __init__(self, addresses, address_distances, packages, truck=None, hour=8, minute=0, second=0):
+    def __init__(self, addresses, address_distances, packages, truck=None, time='08:00:00'):
         self.truck = truck
         self.addresses = addresses
         self.address_distances = address_distances
         self.packages = packages
-        self.current_datetime = datetime.combine(datetime.today(), time(hour, minute, second))
+        self.current_datetime = datetime.combine(datetime.today(), self.parse_time(time))
+
+    def parse_time(self, string):
+        return datetime.strptime(string, '%H:%M:%S').time()
 
     def current_time(self):
         return self.current_datetime.strftime('%H:%M:%S')
