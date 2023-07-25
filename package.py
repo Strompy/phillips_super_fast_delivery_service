@@ -14,3 +14,9 @@ class Package:
     def delivered_at_time(self):
         if isinstance(self.delivery_time, datetime):
             return self.delivery_time.strftime('%H:%M:%S')
+
+    def update_address(self, address):
+        self.address = address
+
+    def update_notes(self, notes):
+        self.notes = notes
