@@ -8,6 +8,7 @@ class TruckLoader:
         self.address_distances = address_distances
         self.packages = packages
         self.current_datetime = datetime.combine(datetime.today(), self.parse_time(time))
+        self.address_needs_updating = True
 
     def parse_time(self, string):
         return datetime.strptime(string, '%H:%M:%S').time()
@@ -49,15 +50,22 @@ class TruckLoader:
         # return multiple indices to ensure that I can check all addresses with the same distance
         return min_indices
 
-    def room_on_truck(self, packages_at_address):
-        return len(self.truck.packages) + len(packages_at_address) <= 16
+    def room_on_truck(self, packages_at_address=[]):
+        # if self.truck.number == 2:
+        #     return len(self.truck.packages) + len(packages_at_address) <= 15
+        # else:
+            return len(self.truck.packages) + len(packages_at_address) <= 16
 
     def package_is_valid(self, package, address):
         if package.truck_number is not None: return False
         if package.address != address: return False
         if package.notes == 'Can only be on truck 2' and self.truck.number != 2: return False
         if package.notes == 'Delayed on flight---will not arrive to depot until 9:05 am' and self.truck.number != 3: return False
+        # if package.notes == 'Wrong address listed' and not self.updated_address_available(): return False
         return True
+
+    # def updated_address_available(self):
+        # return self.current_datetime >= datetime.combine(datetime.today(), time(10, 20))
 
     def validate_and_load_packages(self, packages_at_address, address, distance):
         # check all packages_at_address are valid
@@ -124,6 +132,21 @@ class TruckLoader:
         return self.truck
 
 
+    def load_truck_3(self):
+        self.truck.add_address_to_route(self.hub())
+        current_address = self.last_route_address()
+        current_address_distances = self.address_distances[current_address].copy()
+        farthest_required_address = '4101 Inca St, Denver, CO 80211'
+        index = self.addresses.index(farthest_required_address)
+        distance = current_address_distances[index]
+        address = self.addresses[index]
+        packages_at_address = [package for package in self.packages if package.address == address]
+        self.validate_and_load_packages(packages_at_address, address, distance)
+
+        self.load_truck()
+        return self.truck
+
+
     def load_truck_2(self):
         self.truck.add_address_to_route(self.hub())
         current_address = self.last_route_address()
@@ -136,3 +159,18 @@ class TruckLoader:
         self.validate_and_load_packages(packages_at_address, address, distance)
 
         self.load_truck()
+
+        # self.truck.packages
+        # self.wait_until_updated_address_time()
+        # package = self.update_wrong_address()
+        # current_address = self.last_route_address()
+        # current_address_distances = self.address_distances[current_address].copy()
+        # index = self.addresses.index(package.address)
+        # distance = current_address_distances[index]
+        # address = self.addresses[index]
+        # self.validate_and_load_packages([package], address, distance)
+
+    def wait_until_updated_address_time(self):
+        # if time is earlier than 10:20am, set time to 10:20am
+        if self.current_datetime.time() < time(10, 20):
+            self.current_datetime = datetime.combine(datetime.today(), time(10, 20))
